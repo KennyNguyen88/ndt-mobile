@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-/**
- * Created by WIn on 9/6/2016.
- */
 public class NotesProvider extends ContentProvider {
 
     private static final String AUTHORITY = "com.example.trung.lyndanotetaking.notesprovider";

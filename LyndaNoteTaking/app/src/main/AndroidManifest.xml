@@ -24,7 +24,7 @@
             android:authorities="com.example.trung.lyndanotetaking.notesprovider"
             android:exported="false" />
 
-        <activity android:name=".EditorActivity"></activity>
+        <activity android:name=".EditorActivity"/>
     </application>
 
 </manifest>
