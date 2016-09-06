@@ -18,10 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="com.example.trung.lyndanotetaking.notesprovider"
             android:name=".NotesProvider"
+            android:authorities="com.example.trung.lyndanotetaking.notesprovider"
             android:exported="false" />
+
+        <activity android:name=".EditorActivity"></activity>
     </application>
 
 </manifest>
