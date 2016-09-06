@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.NOTE_TEXT,noteText);
         Uri noteUri = getContentResolver().insert(NotesProvider.CONTENT_URI, values);
-        Log.d("Main Activity", "Inserted note " + noteUri.getLastPathSegment());
     }
 
     @Override
