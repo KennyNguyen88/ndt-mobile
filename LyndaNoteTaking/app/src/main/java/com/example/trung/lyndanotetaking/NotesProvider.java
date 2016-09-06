@@ -22,6 +22,8 @@ public class NotesProvider extends ContentProvider {
     private static final int NOTES_ID = 2;
 
     private static final UriMatcher urimatcher = new UriMatcher(UriMatcher.NO_MATCH); // Parse URI and tell which operation has been requested
+    public static final String CONTENT_ITEM_TYPE = "Note";
+
     static {
         urimatcher.addURI(AUTHORITY,BASE_PATH,NOTES);
         urimatcher.addURI(AUTHORITY,BASE_PATH + "/#",NOTES_ID);
