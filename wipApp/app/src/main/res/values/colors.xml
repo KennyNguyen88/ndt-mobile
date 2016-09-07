@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="poscoBlue">#05507d</color>
+    <color name="poscoLightBlue">#00a5e5</color>
+    <color name="poscoDarkGray">#4b5151</color>
+    <color name="poscoLightGray">#bdbdba</color>
+    <color name="white">#ffffff</color>
 </resources>
