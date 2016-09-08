@@ -12,4 +12,10 @@
     tools:context="com.posco.erp.wipapp.Screen1Activity"
     tools:showIn="@layout/activity_screen1">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/android:list"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>

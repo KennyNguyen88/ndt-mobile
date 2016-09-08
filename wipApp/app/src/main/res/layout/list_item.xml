@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item: "
+        android:id="@+id/item_label"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q1000429"
+        android:id="@+id/item_detail"
+        android:layout_toRightOf="@id/item_label"
+        android:padding="5dp"
+     />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20000"
+        android:id="@+id/onhand_detail"
+        android:padding="5dp"
+
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On-hand: "
+        android:id="@+id/onhand_label"
+        android:layout_toLeftOf="@id/onhand_detail"
+        android:padding="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desc: "
+        android:id="@+id/desc_label"
+        android:layout_below="@id/item_label"
+        android:padding="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oil Seal/Bearing Isolator TC, ID75xOD100"
+        android:id="@+id/desc_detail"
+        android:layout_below="@id/item_label"
+        android:layout_toRightOf="@+id/desc_label"
+        android:padding="5dp"
+         />
+</RelativeLayout>

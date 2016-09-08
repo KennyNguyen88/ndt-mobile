@@ -10,7 +10,10 @@
     <string name="menu_item2">Menu 2</string>
     <string name="menu_item3">Menu 3</string>
     <string name="about">This is demo application. Open menu and navigation to your desire function !</string>
-    <string name="title_activity_screen1">Screen1Activity</string>
-    <string name="title_activity_screen2">Screen2Activity</string>
-    <string name="title_activity_screen3">Screen3Activity</string>
+    <string name="title_activity_screen1">Screen1</string>
+    <string name="title_activity_screen2">Screen2</string>
+    <string name="title_activity_screen3">Screen3</string>
+    <string name="screen1_title">Screen 1</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">Input Items...</string>
 </resources>
