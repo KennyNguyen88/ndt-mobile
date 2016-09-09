@@ -8,4 +8,8 @@
     <color name="poscoDarkGray">#4b5151</color>
     <color name="poscoLightGray">#bdbdba</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="label_background">#546e7a</color>
+    <color name="hightlight">#fff9c4</color>
+
 </resources>

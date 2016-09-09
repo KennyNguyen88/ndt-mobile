@@ -49,7 +49,6 @@ public class Screen1Activity extends AppCompatActivity implements OnQueryTextLis
         setIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
-//            doSearch(query);
             Toast.makeText(this,"Searching item: " + query, Toast.LENGTH_SHORT).show();
 
         }
