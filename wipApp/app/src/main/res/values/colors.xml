@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="poscoBlue">#05507d</color>
+    <color name="poscoLightBlue">#00a5e5</color>
+    <color name="poscoDarkGray">#4b5151</color>
+    <color name="poscoLightGray">#bdbdba</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="label_background">#546e7a</color>
+    <color name="hightlight">#fff9c4</color>
+
+</resources>
