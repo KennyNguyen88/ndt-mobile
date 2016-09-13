@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+        if (id == R.id.action_create_samples){
+            createSample();
+        }
         return super.onOptionsItemSelected(item);
     }
 

@@ -16,4 +16,5 @@
     <string name="screen1_title">Screen 1</string>
     <string name="action_search">Search</string>
     <string name="search_hint">Input Items...</string>
+    <string name="action_create_sample">Create Samples</string>
 </resources>
