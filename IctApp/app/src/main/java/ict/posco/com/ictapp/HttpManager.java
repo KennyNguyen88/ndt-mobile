@@ -6,11 +6,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpManager {
-    public static String getData(String uri){
+    public static String getData(RequestPackage p){
         BufferedReader reader = null;
+        String uri = p.getUri();
+
+        if (p.getMethod().equals("GET")){
+            uri+="?" + p.getEncodedParams();
+        }
+
         try{
             URL url = new URL(uri);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod(p.getMethod());
             StringBuilder sb = new StringBuilder();
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
