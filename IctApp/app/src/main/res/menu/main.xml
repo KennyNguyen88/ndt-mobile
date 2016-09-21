@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ict.posco.com.ictapp.MainActivity">
+    tools:context="ict.posco.com.ictapp.ict.posco.com.MainActivity">
     <item
         android:id="@+id/action_do_task"
         android:orderInCategory="100"

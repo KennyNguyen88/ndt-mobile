@@ -1,4 +1,4 @@
-package ict.posco.com.dto;
+package ict.posco.com.models;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ public class orderDTO {
     private String ordNo;
     private String cntrNm;
     private String custNm;
-    private Date ordDwpDt;
+    private String ordDwpDt;
     private String wgtDcsTp;
     private String paymentTermCd;
     private String dlvrTermCd;
@@ -38,11 +38,11 @@ public class orderDTO {
         this.custNm = custNm;
     }
 
-    public Date getOrdDwpDt() {
+    public String getOrdDwpDt() {
         return ordDwpDt;
     }
 
-    public void setOrdDwpDt(Date ordDwpDt) {
+    public void setOrdDwpDt(String ordDwpDt) {
         this.ordDwpDt = ordDwpDt;
     }
 

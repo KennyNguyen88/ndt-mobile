@@ -1,16 +1,18 @@
-package ict.posco.com.ictapp;
+package ict.posco.com.managers;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import ict.posco.com.network.RequestPackage;
+
 public class HttpManager {
     public static String getData(RequestPackage p){
         BufferedReader reader = null;
         String uri = p.getUri();
 
-        if (p.getMethod().equals("GET")){
+        if (p.getMethod().equals("GET") || p.getMethod().equals("POST")){
             uri+="?" + p.getEncodedParams();
         }
 

@@ -1,4 +1,4 @@
-package ict.posco.com.ictapp;
+package ict.posco.com;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -16,9 +16,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ict.posco.com.dto.onhandDTO;
-import ict.posco.com.ict.posco.com.adapter.onhandAdapter;
-import ict.posco.com.ict.posco.com.parser.onhandJSONParser;
+import ict.posco.com.models.onhandDTO;
+import ict.posco.com.views.adapters.onhandAdapter;
+import ict.posco.com.models.onhandJSONParser;
+import ict.posco.com.ictapp.R;
+import ict.posco.com.network.RequestPackage;
+import ict.posco.com.managers.HttpManager;
 
 public class MainActivity extends AppCompatActivity {
     ProgressBar pb;

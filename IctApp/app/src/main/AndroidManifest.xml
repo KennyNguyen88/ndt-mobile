@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="ict.posco.com.MainActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -19,7 +19,7 @@
             <!--</intent-filter>-->
         </activity>
         <activity
-            android:name=".getOrderBySts"
+            android:name="ict.posco.com.OrderActivity"
             android:label="@string/title_activity_get_order_by_sts"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

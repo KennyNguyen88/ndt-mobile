@@ -1,38 +1,36 @@
-package ict.posco.com.ictapp;
+package ict.posco.com;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ict.posco.com.dto.onhandDTO;
-import ict.posco.com.dto.orderDTO;
-import ict.posco.com.ict.posco.com.adapter.onhandAdapter;
-import ict.posco.com.ict.posco.com.adapter.orderAdapter;
-import ict.posco.com.ict.posco.com.parser.onhandJSONParser;
-import ict.posco.com.ict.posco.com.parser.orderJSONParser;
+import ict.posco.com.models.orderDTO;
+import ict.posco.com.views.adapters.orderAdapter;
+import ict.posco.com.models.orderJSONParser;
+import ict.posco.com.managers.HttpManager;
+import ict.posco.com.ictapp.R;
+import ict.posco.com.network.RequestPackage;
 
-public class getOrderBySts extends AppCompatActivity {
+public class OrderActivity extends AppCompatActivity {
     List<orderDTO> resultList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_order_by_sts);
+        setContentView(R.layout.activity_order);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         resultList = new ArrayList<>();
     }
     @Override
@@ -46,7 +44,8 @@ public class getOrderBySts extends AppCompatActivity {
         if(item.getItemId() == R.id.action_do_task){
             if(isOnline())
             {
-                requestData();
+                String uri = "http://172.27.26.74:9090/IctVnRService/getOrderBySts";
+                requestData(uri);
             }
             else{
                 Toast.makeText(this,"Network isn't available",Toast.LENGTH_LONG).show();
@@ -63,19 +62,18 @@ public class getOrderBySts extends AppCompatActivity {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    private void requestData() {
+    private void requestData(String uri) {
         MyTask task = new MyTask();
-        String uri = "http://172.27.26.74:9090/IctVnRService/getOrderBySts";
         RequestPackage p = new RequestPackage();
 //        p.setMethod("GET");
         p.setMethod("POST");
         p.setUri(uri);
-//        p.setParam("ITEM_CD","AAU10P02");
+        p.setParam("ordStsCd","A");
         task.execute(p);
     }
 
     private void updateDisplay() {
-        orderAdapter adapter = new orderAdapter(this,R.layout.item_onhand,resultList);
+        orderAdapter adapter = new orderAdapter(this,R.layout.item_order,resultList);
         if (resultList.size() > 0)
         {
             ListView lv = (ListView) findViewById(R.id.listView);
@@ -88,15 +86,20 @@ public class getOrderBySts extends AppCompatActivity {
         @Override
         protected String doInBackground(RequestPackage... params) {
             String content = HttpManager.getData(params[0]);
+
             return content;
         }
 
         @Override
         protected void onPostExecute(String s) {
-
-            resultList = orderJSONParser.parseString(s);
-
-            updateDisplay();
+            if (s.isEmpty())
+            {
+                Toast.makeText(OrderActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+            }
+            else{
+                resultList = orderJSONParser.parseString(s);
+                updateDisplay();
+            }
 //            pb.setVisibility(View.INVISIBLE);
         }
 

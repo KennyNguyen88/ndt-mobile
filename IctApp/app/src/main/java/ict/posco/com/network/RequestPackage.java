@@ -1,4 +1,4 @@
-package ict.posco.com.ictapp;
+package ict.posco.com.network;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

@@ -1,4 +1,4 @@
-package ict.posco.com.ict.posco.com.adapter;
+package ict.posco.com.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import ict.posco.com.dto.onhandDTO;
+import ict.posco.com.models.onhandDTO;
 import ict.posco.com.ictapp.R;
 
 public class onhandAdapter extends ArrayAdapter<onhandDTO> {

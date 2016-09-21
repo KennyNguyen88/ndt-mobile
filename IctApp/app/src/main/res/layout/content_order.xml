@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ict.posco.com.ictapp.getOrderBySts"
-    tools:showIn="@layout/activity_get_order_by_sts">
+    tools:context="ict.posco.com.OrderActivity"
+    tools:showIn="@layout/activity_order">
 
 
     <ListView

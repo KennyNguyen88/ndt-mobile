@@ -1,4 +1,4 @@
-package ict.posco.com.dto;
+package ict.posco.com.models;
 
 public class onhandDTO {
     private String ITEM_CD;

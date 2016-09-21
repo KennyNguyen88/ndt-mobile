@@ -1,4 +1,4 @@
-package ict.posco.com.ict.posco.com.parser;
+package ict.posco.com.models;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ict.posco.com.dto.onhandDTO;
+import ict.posco.com.models.onhandDTO;
 
 public class onhandJSONParser {
     public static List<onhandDTO> parseString(String content) {
