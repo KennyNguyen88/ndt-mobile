@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">IctApp</string>
+    <string name="action_do_task">Do Task</string>
+    <string name="flower_image_placeholder">Flower Image</string>
+    <string name="title_activity_get_order_by_sts">getOrderBySts</string>
+</resources>
