@@ -1,4 +1,4 @@
-package com.posco.erp.wipapp;
+package com.posco.erp.wipapp.managers;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+
+import com.posco.erp.wipapp.utils.DBOpenHelper;
+
 public class onhandProvider extends ContentProvider {
     private static final String AUTHORITY = "com.posco.erp.wipapp.onhandprovider";
     private static final String BASE_PATH = "onhand"; //table name

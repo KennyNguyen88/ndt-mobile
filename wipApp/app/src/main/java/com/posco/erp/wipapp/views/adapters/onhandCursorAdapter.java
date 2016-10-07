@@ -1,9 +1,8 @@
-package com.posco.erp.wipapp;
+package com.posco.erp.wipapp.views.adapters;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
-import android.icu.text.DecimalFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import com.posco.erp.wipapp.R;
+import com.posco.erp.wipapp.utils.DBOpenHelper;
 
 public class onhandCursorAdapter extends CursorAdapter {
     public onhandCursorAdapter(Context context, Cursor c, int flags) {
@@ -35,16 +37,16 @@ public class onhandCursorAdapter extends CursorAdapter {
 
         String quantity = cursor.getString(cursor.getColumnIndex(DBOpenHelper.ONHAND_QUANTITY));
         TextView tv_quantity = (TextView) view.findViewById(R.id.onhand_detail);
-        try{
-            DecimalFormat format = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                format = new DecimalFormat("#,###,###");
-            }
-            quantity = format.format(quantity);
-        }catch (Exception ex)
-        {
-
-        }
+//        try{
+//            DecimalFormat format = null;
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+//                format = new DecimalFormat("#,###,###");
+//            }
+//            quantity = format.format(quantity);
+//        }catch (Exception ex)
+//        {
+//
+//        }
         tv_quantity.setText(quantity);
 
 

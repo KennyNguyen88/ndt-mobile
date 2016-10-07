@@ -60,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestData() {
         MyTask task = new MyTask();
-//        String uri = "http://172.27.26.55:8080/services/HelloWorld?wsdl";
+        String uri = "http://172.27.26.55:8080/services/HelloWorld?wsdl";
 //        String uri = "http://services.hanselandpetal.com/feeds/flowers.xml";
 //        String uri = "http://services.hanselandpetal.com/feeds/flowers.json";
 //        String uri = "http://172.27.26.55:8080/onhand/get";
-        String uri = "http://172.27.26.74:9090/SpringMVCRESTFulExample/getOrder?name=JavaHonks";
+        //String uri = "http://172.27.26.74:9090/SpringMVCRESTFulExample/getOrder?name=JavaHonks";
+
         RequestPackage p = new RequestPackage();
 //        p.setMethod("GET");
         p.setMethod("POST");

@@ -1,4 +1,4 @@
-package com.posco.erp.wipapp;
+package com.posco.erp.wipapp.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
