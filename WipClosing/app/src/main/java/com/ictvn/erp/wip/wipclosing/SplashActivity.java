@@ -28,12 +28,13 @@ public class SplashActivity extends AppCompatActivity {
         TextView txtPower = (TextView) findViewById(R.id.txtPower);
         txtPower.setText(getResources().getString(R.string.power_by));
 
-        //Logo animation
+        //Animation
         ImageView imgView = (ImageView) findViewById(R.id.imageView);
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(imgView, "scaleX",0.5f,1f).setDuration(1000);
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(imgView, "scaleY",0.5f,1f).setDuration(1000);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(imgView, "scaleX",0.5f,1f).setDuration(1000);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(imgView, "scaleY",0.5f,1f).setDuration(1000);
+        ObjectAnimator translateY = ObjectAnimator.ofFloat(txtSlogan, "translationY",200f,0f).setDuration(1000);
         AnimatorSet set = new AnimatorSet();
-        set.playTogether(animatorX,animatorY);
+        set.playTogether(scaleX,scaleY,translateY);
         set.setDuration(2000);
         set.start();
 
@@ -45,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this,MainActivity.class));
                 finish();//Don't let user comeback splash screen
             }
-        }, 2000);
+        }, 4000);
 
     }
 
