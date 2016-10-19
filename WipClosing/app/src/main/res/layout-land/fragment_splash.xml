@@ -23,9 +23,9 @@
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        tools:textColor="@color/colorWhite"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp"
+        tools:textColor="@color/colorWhite"
+        android:textSize="30sp"
         />
 
     <TextView
