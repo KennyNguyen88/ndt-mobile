@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPoscoBlue">#00578a</color>
+    <color name="colorPoscoLightBlue">#00A7E5</color>
+    <color name="colorPoscoDarkGray">#4B5051</color>
+    <color name="colorPoscoLightGray">#bcbcb9</color>
+
+    <color name="colorWhite">#ffffff</color>
+
+
+
+</resources>

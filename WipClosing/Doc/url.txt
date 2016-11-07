@@ -1,0 +1,7 @@
+Search IF Status
+http://172.27.26.55/public/search/ifStatus/2016-10-01/2016-10-31
+[{"stt":"1","process_status_code":"000","count":"743","process_status_desc":"Completed","program":null},{"stt":"4","process_status_code":"NEW","count":"5426","process_status_desc":"Pending","program":null}]
+
+Search OIT
+http://172.27.26.55/public/search/oit
+[{"tp":"MTL_TRX_PENDING","total":"0"},{"tp":"MTL_TRX_ERROR","total":"0"},{"tp":"MTL_LOT_TRX_PENDING","total":"0"},{"tp":"MTL_LOT_TRX_ERROR","total":"0"},{"tp":"WIP_JOB_PENDING","total":"0"},{"tp":"WIP_JOB_ERROR","total":"0"},{"tp":"MOV_TRX_PENDING","total":"0"},{"tp":"MOV_TRX_ERROR","total":"0"},{"tp":"RESOURCE_PENDING","total":"0"},{"tp":"RESOURCE_ERROR","total":"0"},{"tp":"MTL_TEMP_PENDING","total":"0"},{"tp":"MTL_TEMP_ERROR","total":"0"}]
