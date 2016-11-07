@@ -19,4 +19,8 @@
     <string name="action_create_sample">Create Samples</string>
     <string name="slogan">Steel Solution for Success</string>
     <string name="Powered">Power by POSCO ICT Viet Nam</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="login_fail_notify">Username and Password not correct</string>
 </resources>

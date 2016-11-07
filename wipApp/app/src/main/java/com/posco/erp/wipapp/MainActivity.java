@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        if(true)
-        {
-            Intent intent = new Intent(this, LogInActivity.class);
-            startActivity(intent);
-        }
+//        if(true)
+//        {
+//            Intent intent = new Intent(this, LogInActivity.class);
+//            startActivity(intent);
+//        }
 
 //        createSample();
 
