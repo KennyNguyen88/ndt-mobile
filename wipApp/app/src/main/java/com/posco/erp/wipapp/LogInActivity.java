@@ -17,6 +17,8 @@ public class LogInActivity extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+    private String _username = "cthee";
+    private String _password = "0504";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,12 @@ public class LogInActivity extends AppCompatActivity {
                 String sUser = username.getText().toString().trim();
                 String sPasword = password.getText().toString().trim();
 
-                    if (sUser.equalsIgnoreCase("cthee") && sPasword.equalsIgnoreCase("0504"))
+                    if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
+//                if(true)
                     {
                         //Success
-                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        //Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
                         startActivity(intent);
                         finish();
                     }

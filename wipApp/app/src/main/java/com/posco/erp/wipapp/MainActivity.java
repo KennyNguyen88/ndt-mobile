@@ -23,14 +23,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,21 +32,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 //        if(true)
 //        {
 //            Intent intent = new Intent(this, LogInActivity.class);
 //            startActivity(intent);
 //        }
 
-//        createSample();
 
-    }
 
-    private void createSample() {
-        insertOnhand("Q1000429",20000,"Oil Seal/Bearing Isolator TC, ID75xOD100");
-        insertOnhand("Q1007207",30,"V-Belt C-121,3073LX22WX14T");
-        insertOnhand("Q1010543",2000,"Union 15A, STS304, SCH40, SCREW");
-        insertOnhand("Q1010544",2000,"Union 15A, STS304, SCH40, SCREW Union 15A, STS304, SCH40, SCREW");
     }
 
     @Override
@@ -85,10 +71,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
-        if (id == R.id.action_create_samples){
-            createSample();
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -100,15 +82,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.screen1) {
             // Handle the screen1 action
-            Intent intent = new Intent(this, Screen1Activity.class);
-            startActivity(intent);
-        } else if (id == R.id.screen2) {
-            Intent intent = new Intent(this, Screen2Activity.class);
-            startActivity(intent);
-        } else if (id == R.id.screen3) {
-            Intent intent = new Intent(this, Screen3Activity.class);
+            Intent intent = new Intent(this, Screen1TActivity.class);
             startActivity(intent);
         }
+//        else if (id == R.id.screen2) {
+//            Intent intent = new Intent(this, Screen2Activity.class);
+//            startActivity(intent);
+//        } else if (id == R.id.screen3) {
+//            Intent intent = new Intent(this, Screen3Activity.class);
+//            startActivity(intent);
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
