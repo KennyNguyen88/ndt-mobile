@@ -2,6 +2,7 @@ package com.posco.erp.wipapp;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,13 +38,18 @@ public class LogInActivity extends AppCompatActivity {
                 String sUser = username.getText().toString().trim();
                 String sPasword = password.getText().toString().trim();
 
-                    if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
-//                if(true)
+//                    if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
+                if(true)
                     {
                         //Success
                         //Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
+
+                        Uri uri = Uri.parse("http://113.164.120.62:8070/CHD/screen1.jsp");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
+
+//                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
+//                        startActivity(intent);
                         finish();
                     }
                 else{
