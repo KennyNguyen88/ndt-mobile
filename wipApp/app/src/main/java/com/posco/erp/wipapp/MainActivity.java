@@ -33,14 +33,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        if(true)
-//        {
-//            Intent intent = new Intent(this, LogInActivity.class);
-//            startActivity(intent);
-//        }
-
-
-
     }
 
     @Override
@@ -80,32 +72,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.screen1) {
+        if (id == R.id.onhand) {
             // Handle the screen1 action
-            Intent intent = new Intent(this, Screen1TActivity.class);
+            Intent intent = new Intent(this, OnHandActivity.class);
             startActivity(intent);
         }
-//        else if (id == R.id.screen2) {
-//            Intent intent = new Intent(this, Screen2Activity.class);
-//            startActivity(intent);
-//        } else if (id == R.id.screen3) {
-//            Intent intent = new Intent(this, Screen3Activity.class);
-//            startActivity(intent);
-//        }
+        else if (id == R.id.cycle) {
+            Intent intent = new Intent(this, Screen2Activity.class);
+            startActivity(intent);
+        } else if (id == R.id.transaction) {
+            Intent intent = new Intent(this, Screen3Activity.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    private void insertOnhand(String itemcd, float quantity, String itemdesc) {
-        ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.ONHAND_ITEM_CD,itemcd);
-        values.put(DBOpenHelper.ONHAND_QUANTITY,quantity);
-        values.put(DBOpenHelper.ONHAND_ITEM_DESC,itemdesc);
-//        Uri noteUri = getContentResolver().insert(onhandProvider.CONTENT_URI, values);
-        getContentResolver().insert(onhandProvider.CONTENT_URI, values);
-    }
-
 
 }

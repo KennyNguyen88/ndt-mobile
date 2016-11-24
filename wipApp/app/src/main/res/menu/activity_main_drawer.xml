@@ -3,17 +3,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/screen1"
+            android:id="@+id/onhand"
             android:icon="@drawable/ic_label_black_24dp"
             android:title="@string/menu_item1" />
-        <!--<item-->
-            <!--android:id="@+id/screen2"-->
-            <!--android:icon="@drawable/ic_label_black_24dp"-->
-            <!--android:title="@string/menu_item2" />-->
-        <!--<item-->
-            <!--android:id="@+id/screen3"-->
-            <!--android:icon="@drawable/ic_label_black_24dp"-->
-            <!--android:title="@string/menu_item3" />-->
+        <item
+            android:id="@+id/cycle"
+            android:icon="@drawable/ic_label_black_24dp"
+            android:title="@string/menu_item2" />
+        <item
+            android:id="@+id/transaction"
+            android:icon="@drawable/ic_label_black_24dp"
+            android:title="@string/menu_item3" />
     </group>
 
 </menu>

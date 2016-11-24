@@ -38,18 +38,19 @@ public class LogInActivity extends AppCompatActivity {
                 String sUser = username.getText().toString().trim();
                 String sPasword = password.getText().toString().trim();
 
-//                    if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
+//              if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
                 if(true)
                     {
                         //Success
                         //Intent intent = new Intent(LogInActivity.this, MainActivity.class);
 
-                        Uri uri = Uri.parse("http://113.164.120.62:8070/CHD/screen1.jsp");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-
-//                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
+//                        Uri uri = Uri.parse("http://113.164.120.62:8070/CHD/screen1.jsp");
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //                        startActivity(intent);
+
+//                        Intent intent = new Intent(LogInActivity.this, Screen1Activity.class);
+                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
                     }
                 else{
