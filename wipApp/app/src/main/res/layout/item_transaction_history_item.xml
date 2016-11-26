@@ -18,7 +18,7 @@
             android:padding="5dp"
             android:background="@color/poscoDarkGray"
             android:textColor="@color/white"
-            android:text="Item: "
+            android:text="Item:"
              />
 
         <TextView android:id="@+id/item_detail"

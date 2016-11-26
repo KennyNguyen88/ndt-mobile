@@ -56,12 +56,10 @@ public class TransactionHistoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TransactionHistoryActivity.this, TransactionHistoryDetailActivity.class);
-//                Uri uri = Uri.parse(NotesProvider.CONTENT_URI + "/" + id);
-//                intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
-//                view.get
-                startActivity(intent);
-//                Object listItem = lv.getItemAtPosition(position);
-//                Log.v("TRUNG", "onItemClick");
+                itemDTO it = (itemDTO) lv.getItemAtPosition(position);
+                intent.putExtra("inventoryItemId",it.getINVENTORY_ITEM_ID());
+                intent.putExtra("itemCd",it.getITEM_CD());
+                startActivityForResult(intent,0);
             }
         });
         pb = (ProgressBar) findViewById(R.id.progressBar2);
