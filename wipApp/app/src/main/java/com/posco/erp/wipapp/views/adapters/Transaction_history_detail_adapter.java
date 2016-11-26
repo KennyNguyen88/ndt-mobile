@@ -19,10 +19,10 @@ import java.util.List;
  * Created by WIn on 11/26/2016.
  */
 
-public class Transaction_history_detail_adapter extends ArrayAdapter<transactionDTO> {
+public class Transaction_History_Detail_Adapter extends ArrayAdapter<transactionDTO> {
     private Context context;
     private List<transactionDTO> resultList;
-    public Transaction_history_detail_adapter(Context context, int resource, List<transactionDTO> objects) {
+    public Transaction_History_Detail_Adapter(Context context, int resource, List<transactionDTO> objects) {
         super(context, resource, objects);
         this.context = context;
         resultList = objects;

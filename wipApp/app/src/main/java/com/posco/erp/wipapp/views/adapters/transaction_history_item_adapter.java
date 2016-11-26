@@ -14,11 +14,11 @@ import com.posco.erp.wipapp.models.itemDTO;
 
 import java.util.List;
 
-public class Transaction_history_item_adapter extends ArrayAdapter<itemDTO> {
+public class Transaction_History_Item_Adapter extends ArrayAdapter<itemDTO> {
     private Context context;
     private List<itemDTO> resultList;
 
-    public Transaction_history_item_adapter(Context context, int resource, List<itemDTO> objects) {
+    public Transaction_History_Item_Adapter(Context context, int resource, List<itemDTO> objects) {
         super(context, resource, objects);
         this.context = context;
         resultList = objects;

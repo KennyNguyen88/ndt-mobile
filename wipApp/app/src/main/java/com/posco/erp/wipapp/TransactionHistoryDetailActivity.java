@@ -1,31 +1,24 @@
 package com.posco.erp.wipapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.posco.erp.wipapp.managers.HttpManager;
 import com.posco.erp.wipapp.models.Detail_TransactionJSONParser;
-import com.posco.erp.wipapp.models.Item_transactionJSONParser;
 import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.transactionDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
-import com.posco.erp.wipapp.views.adapters.Transaction_history_detail_adapter;
-import com.posco.erp.wipapp.views.adapters.Transaction_history_item_adapter;
+import com.posco.erp.wipapp.views.adapters.Transaction_History_Detail_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +81,7 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
         task.execute(p);
     }
     private void updateDisplay() {
-//        Transaction_history_item_adapter adapter = new Transaction_history_item_adapter(this,R.layout.item_transaction_history_item,resultList);
+//        Transaction_History_Item_Adapter adapter = new Transaction_History_Item_Adapter(this,R.layout.item_transaction_history_item,resultList);
         if (resultList != null)
         {
             if (resultList.size() > 0)
@@ -102,7 +95,7 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
                     results.add(trx);
                 }
                 updateDisplayItem(item);
-                Transaction_history_detail_adapter adapter = new Transaction_history_detail_adapter(this,R.layout.item_transaction_history_detail,results);
+                Transaction_History_Detail_Adapter adapter = new Transaction_History_Detail_Adapter(this,R.layout.item_transaction_history_detail,results);
                 ListView lv = (ListView) findViewById(R.id.listView3);
                 lv.setAdapter(adapter);
             }

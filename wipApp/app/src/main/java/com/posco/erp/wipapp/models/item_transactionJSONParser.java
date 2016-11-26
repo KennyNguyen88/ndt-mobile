@@ -11,7 +11,7 @@ import java.util.List;
  * Created by WIn on 11/25/2016.
  */
 
-public class Item_transactionJSONParser {
+public class Item_TransactionJSONParser {
     public static List<itemDTO> parseString(String content) {
         try {
             JSONArray ar = new JSONArray(content);

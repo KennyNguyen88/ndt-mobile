@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.cycle) {
-            Intent intent = new Intent(this, Screen2Activity.class);
+            Intent intent = new Intent(this, CycleCountStockActivity.class);
             startActivity(intent);
         } else if (id == R.id.transaction) {
             Intent intent = new Intent(this, TransactionHistoryActivity.class);
