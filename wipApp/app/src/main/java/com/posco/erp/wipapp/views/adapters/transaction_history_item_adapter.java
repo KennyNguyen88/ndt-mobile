@@ -13,11 +13,12 @@ import com.posco.erp.wipapp.R;
 import com.posco.erp.wipapp.models.itemDTO;
 
 import java.util.List;
-public class OnhandAdapter extends ArrayAdapter<itemDTO> {
+
+public class Transaction_history_item_adapter extends ArrayAdapter<itemDTO> {
     private Context context;
     private List<itemDTO> resultList;
 
-    public OnhandAdapter(Context context, int resource, List<itemDTO> objects) {
+    public Transaction_history_item_adapter(Context context, int resource, List<itemDTO> objects) {
         super(context, resource, objects);
         this.context = context;
         resultList = objects;
@@ -25,7 +26,7 @@ public class OnhandAdapter extends ArrayAdapter<itemDTO> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_onhand,parent,false);
+        View view = inflater.inflate(R.layout.item_transaction_history_item,parent,false);
 
         itemDTO dto = resultList.get(position);
 
@@ -39,11 +40,6 @@ public class OnhandAdapter extends ArrayAdapter<itemDTO> {
         TextView tv_uom = (TextView) view.findViewById(R.id.uom_detail);
         tv_uom.setText(uom);
         tv_uom.setSingleLine();
-
-        String stock = dto.getSUBINVENTORY_CODE();
-        TextView tv_stock = (TextView) view.findViewById(R.id.stock_detail);
-        tv_stock.setText(stock);
-        tv_stock.setSingleLine();
 
         String quantity = String.valueOf(dto.getQUANTITY());
         TextView tv_quantity = (TextView) view.findViewById(R.id.onhand_detail);

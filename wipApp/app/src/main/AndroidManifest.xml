@@ -22,7 +22,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.posco.erp.wipapp.MainActivity" />
-
         </activity>
         <activity android:name=".Screen2Activity"
             android:label="@string/title_activity_screen2"
@@ -40,9 +39,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.posco.erp.wipapp.MainActivity" />
         </activity>
-        <provider android:name=".managers.onhandProvider"
+
+        <provider
+            android:name=".managers.onhandProvider"
             android:authorities="com.posco.erp.wipapp.onhandprovider"
             android:exported="false" />
+
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -54,7 +56,7 @@
         <activity android:name=".LogInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Screen1TActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OnHandActivity"
             android:label="@string/title_activity_on_hand"
             android:parentActivityName=".MainActivity"
@@ -62,6 +64,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.posco.erp.wipapp.MainActivity" />
+        </activity>
+        <activity android:name=".TransactionHistoryActivity"
+            android:label="@string/title_activity_transaction_history"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.MainActivity" />
+        </activity>
+        <activity android:name=".TransactionHistoryDetailActivity"
+            android:label="@string/title_activity_transaction_history_detail"
+            android:parentActivityName=".TransactionHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.TransactionHistoryActivity" />
         </activity>
     </application>
 

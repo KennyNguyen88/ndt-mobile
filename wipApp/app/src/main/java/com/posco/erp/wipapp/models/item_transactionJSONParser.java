@@ -7,7 +7,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class onhandJSONParser {
+/**
+ * Created by WIn on 11/25/2016.
+ */
+
+public class Item_transactionJSONParser {
     public static List<itemDTO> parseString(String content) {
         try {
             JSONArray ar = new JSONArray(content);
@@ -15,10 +19,9 @@ public class onhandJSONParser {
             for (int i = 0; i < ar.length(); i++) {
                 JSONObject obj = ar.getJSONObject(i);
                 itemDTO onhand = new itemDTO();
-                onhand.setITEM_CD(obj.getString("item_cd"));
+                onhand.setITEM_CD(obj.getString("itemCd"));
                 onhand.setQUANTITY(obj.getDouble("quantity"));
                 onhand.setDESCRIPTION(obj.getString("description"));
-                onhand.setSUBINVENTORY_CODE(obj.getString("subinventory_code"));
                 onhand.setINVENTORY_ITEM_ID(obj.getString("inventory_item_id"));
                 onhand.setPRIMARY_UOM_CODE(obj.getString("primary_uom_code"));
                 resultList.add(onhand);

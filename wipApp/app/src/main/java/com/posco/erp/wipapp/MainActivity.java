@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, Screen2Activity.class);
             startActivity(intent);
         } else if (id == R.id.transaction) {
-            Intent intent = new Intent(this, Screen3Activity.class);
+            Intent intent = new Intent(this, TransactionHistoryActivity.class);
             startActivity(intent);
         }
 

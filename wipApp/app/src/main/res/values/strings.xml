@@ -24,4 +24,7 @@
     <string name="login_fail_notify">Username and Password not correct</string>
     <string name="title_activity_screen1_t">wipApp Demo</string>
     <string name="title_activity_on_hand">On-hand Quantity</string>
+    <string name="title_activity_transaction_history">Transaction History</string>
+    <string name="title_activity_transaction_history_detail">Transaction History Detail
+    </string>
 </resources>
