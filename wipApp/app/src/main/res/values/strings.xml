@@ -28,4 +28,5 @@
     <string name="title_activity_transaction_history_detail">Transaction History Detail
     </string>
     <string name="title_activity_cycle_count_stock">CycleCountStockActivity</string>
+    <string name="title_activity_cycle_count_detail">CycleCountDetailActivity</string>
 </resources>

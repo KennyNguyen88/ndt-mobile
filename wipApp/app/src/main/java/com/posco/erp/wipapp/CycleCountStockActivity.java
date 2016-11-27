@@ -1,6 +1,7 @@
 package com.posco.erp.wipapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -32,6 +34,7 @@ import java.util.List;
 
 public class CycleCountStockActivity extends AppCompatActivity {
     List<subInventoryDTO> resultList;
+    ListView lv ;
     String uri = "http://172.27.26.55:8080/screen2popJSONServlet";
     ProgressBar pb;
     @Override
@@ -50,6 +53,17 @@ public class CycleCountStockActivity extends AppCompatActivity {
                 {
                     doSearch(query);
                 }
+            }
+        });
+        lv = (ListView) findViewById(R.id.listView);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CycleCountStockActivity.this, CycleCountDetailActivity.class);
+                subInventoryDTO it = (subInventoryDTO) lv.getItemAtPosition(position);
+                intent.putExtra("subInventory",it.getSecondary_inventory_name());
+                startActivityForResult(intent,0);
             }
         });
         pb = (ProgressBar) findViewById(R.id.progressBar);

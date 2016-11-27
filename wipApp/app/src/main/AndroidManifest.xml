@@ -100,6 +100,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.posco.erp.wipapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".CycleCountDetailActivity"
+            android:label="@string/title_activity_cycle_count_detail"
+            android:parentActivityName=".CycleCountStockActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.CycleCountStockActivity" />
+        </activity>
     </application>
 
 </manifest>

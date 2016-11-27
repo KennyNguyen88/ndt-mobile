@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Item"
+             />
+
+        <TextView android:id="@+id/item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/item_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="TextView"
+            />
+
+        <Switch android:id="@+id/btnswitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Edit"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/item_desc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Desc"
+            />
+
+        <TextView android:id="@+id/item_desc_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/item_desc_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Grease"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/onhand_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Onhand"
+             />
+
+        <TextView android:id="@+id/onhand_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/onhand_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:text="1080.0"
+             />
+
+        <EditText android:id="@+id/act_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/hightlight"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:text="200"
+             />
+
+        <TextView android:id="@+id/act_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toLeftOf="@id/act_detail"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Act.Qty"
+             />
+
+    </RelativeLayout>
 </LinearLayout>

@@ -10,14 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.posco.erp.wipapp.R;
-import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.subInventoryDTO;
 
 import java.util.List;
-
-/**
- * Created by WIn on 11/26/2016.
- */
 
 public class Cycle_Count_Stock_Adapter extends ArrayAdapter<subInventoryDTO> {
     private Context context;
