@@ -41,7 +41,7 @@ public class LogInActivity extends AppCompatActivity {
 //                if(true)
                     {
                         //Success
-                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
                         startActivity(intent);
                         finish();
                     }
