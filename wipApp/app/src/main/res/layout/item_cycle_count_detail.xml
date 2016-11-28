@@ -85,7 +85,6 @@
             android:layout_toRightOf="@+id/onhand_label"
             android:background="@color/poscoLightGray"
             android:textColor="@color/black"
-            android:inputType="numberDecimal"
             android:text="1080.0"
              />
 

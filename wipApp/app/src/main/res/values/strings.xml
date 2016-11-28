@@ -27,6 +27,6 @@
     <string name="title_activity_transaction_history">Transaction History</string>
     <string name="title_activity_transaction_history_detail">Transaction History Detail
     </string>
-    <string name="title_activity_cycle_count_stock">CycleCountStockActivity</string>
-    <string name="title_activity_cycle_count_detail">CycleCountDetailActivity</string>
+    <string name="title_activity_cycle_count_stock">Cycle Count Stock Entries</string>
+    <string name="title_activity_cycle_count_detail">Cycle Count Detail Entries</string>
 </resources>

@@ -5,9 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionHistoryDetailActivity extends AppCompatActivity {
-    String uri = "http://172.27.26.55:8080/screen3JSONServlet";
+//    String uri = "http://172.27.26.55:8080/screen3JSONServlet";
+    String uri = "http://113.164.120.62:8070/CHD/screen3JSONServlet";
     List resultList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,8 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
         String inventoryItemId = b.getString("inventoryItemId");
         String itemCd = b.getString("itemCd");
         doSearch(inventoryItemId,itemCd);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
     @Override
@@ -49,6 +53,7 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -108,8 +113,7 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
             Toast.makeText(TransactionHistoryDetailActivity.this,"Error Response",Toast.LENGTH_LONG).show();
         }
     }
-    private void updateDisplayItem(itemDTO dto)
-    {
+    private void updateDisplayItem(itemDTO dto)    {
         TextView tv_Item_Detail = (TextView) findViewById(R.id.item_detail);
         tv_Item_Detail.setText(dto.getITEM_CD());
         tv_Item_Detail.setEllipsize(TextUtils.TruncateAt.END);

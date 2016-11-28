@@ -3,11 +3,14 @@ package com.posco.erp.wipapp.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.posco.erp.wipapp.R;
@@ -15,10 +18,6 @@ import com.posco.erp.wipapp.models.cycleDTO;
 import com.posco.erp.wipapp.models.subInventoryDTO;
 
 import java.util.List;
-
-/**
- * Created by WIn on 11/26/2016.
- */
 
 public class Cycle_Count_Detail_Adapter extends ArrayAdapter<cycleDTO> {
     private Context context;
@@ -34,7 +33,7 @@ public class Cycle_Count_Detail_Adapter extends ArrayAdapter<cycleDTO> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_cycle_count_detail,parent,false);
 
-        cycleDTO dto = resultList.get(position);
+        final cycleDTO dto = resultList.get(position);
 
         String itemCd = dto.getITEM_CD();
         TextView tv_item_detail = (TextView) view.findViewById(R.id.item_detail);
@@ -45,7 +44,7 @@ public class Cycle_Count_Detail_Adapter extends ArrayAdapter<cycleDTO> {
         String item_desc_detail = dto.getDESCRIPTION();
         TextView tv_item_desc_detail = (TextView) view.findViewById(R.id.item_desc_detail);
         tv_item_desc_detail.setText(item_desc_detail);
-        tv_item_desc_detail.setSingleLine();
+//        tv_item_desc_detail.setSingleLine();
 
         Double onhand_detail = dto.getQUANTITY();
         TextView tv_onhand_detail = (TextView) view.findViewById(R.id.onhand_detail);
@@ -56,6 +55,16 @@ public class Cycle_Count_Detail_Adapter extends ArrayAdapter<cycleDTO> {
         EditText tv_act_detail = (EditText) view.findViewById(R.id.act_detail);
         tv_act_detail.setText(act_detail.toString());
         tv_act_detail.setSingleLine();
+
+//        Switch btn_switch = (Switch) view.findViewById(R.id.btnswitch);
+//        btn_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if(isChecked)
+//                    {
+//                        Log.v("Switch checked=", ""+ dto.getINVENTORY_ITEM_ID());
+//                    }
+//                }
+//        });
 
         return view;
     }

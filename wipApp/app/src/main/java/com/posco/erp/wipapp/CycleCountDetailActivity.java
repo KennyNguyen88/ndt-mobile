@@ -10,8 +10,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.posco.erp.wipapp.managers.HttpManager;
 import com.posco.erp.wipapp.models.Cycle_CycleJSONParser;
 import com.posco.erp.wipapp.models.Detail_TransactionJSONParser;
+import com.posco.erp.wipapp.models.cycleDTO;
 import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.transactionDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
@@ -30,23 +34,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CycleCountDetailActivity extends AppCompatActivity {
-    String uri = "http://172.27.26.55:8080/screen2JSONServlet";
+    String uri = "http://113.164.120.62:8070/CHD/screen2JSONServlet";
+//    String uri = "http://172.27.26.55:8080/screen2JSONServlet";
     List resultList;
+    ListView lv;
+    String subInventory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cycle_count_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        lv = (ListView) findViewById(R.id.listView);
         //Get data from parent Activity
         Bundle b = getIntent().getExtras();
-        String subInventory = b.getString("subInventory");
+        subInventory = b.getString("subInventory");
         //header
         TextView tv_stock_detail = (TextView) findViewById(R.id.stock_detail);
         tv_stock_detail.setText("Stock: "+ subInventory);
 
         doSearch(subInventory);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Button submit = (Button) findViewById(R.id.btnSubmit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                updateView();
+            }
+        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    private void updateView(){
+//        for (int i = 0 ; i < lv.getCount(); i++) {
+//            View v = lv.getChildAt(i);
+//            cycleDTO it = (cycleDTO) lv.getItemAtPosition(i);
+//            String itemId = it.getINVENTORY_ITEM_ID();
+//            EditText ed_actQty = (EditText) v.findViewById(R.id.act_detail);
+//            Double actQty = Double.parseDouble(ed_actQty.getText().toString());
+//            postData(uri,actQty, itemId);
+//        }
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -58,6 +83,7 @@ public class CycleCountDetailActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -79,6 +105,17 @@ public class CycleCountDetailActivity extends AppCompatActivity {
             Toast.makeText(CycleCountDetailActivity.this,"Network isn't available",Toast.LENGTH_LONG).show();
         }
     }
+    private void postData(String uri,Double actQty, String itemId) {
+        Log.v("postData",itemId );
+        CycleCountDetailActivity.MyPOSTTask task = new CycleCountDetailActivity.MyPOSTTask();
+        RequestPackage p = new RequestPackage();
+        p.setMethod("POST");
+        p.setUri(uri);
+        p.setParam("subInventory",subInventory);
+        p.setParam("actQty",actQty.toString());
+        p.setParam("itemId",itemId);
+        task.execute(p);
+    }
     private void requestData(String uri,String subInventory) {
         CycleCountDetailActivity.MyTask task = new CycleCountDetailActivity.MyTask();
         RequestPackage p = new RequestPackage();
@@ -93,7 +130,6 @@ public class CycleCountDetailActivity extends AppCompatActivity {
         {
             if (resultList.size() > 0)
             {
-                ListView lv = (ListView) findViewById(R.id.listView);
                 lv.setAdapter(adapter);
             }
             else
@@ -121,6 +157,24 @@ public class CycleCountDetailActivity extends AppCompatActivity {
             else{
                 resultList = Cycle_CycleJSONParser.parseString(s);
                 updateDisplay();
+            }
+        }
+    }
+    private class MyPOSTTask extends AsyncTask<RequestPackage, String, String > {
+        @Override
+        protected String doInBackground(RequestPackage... params) {
+            String content = HttpManager.getData(params[0]);
+            return content;
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            if (s.isEmpty() || s.equalsIgnoreCase(""))
+            {
+                Toast.makeText(CycleCountDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+            }
+            else{
+//                resultList = Cycle_CycleJSONParser.parseString(s);
+//                updateDisplay();
             }
         }
     }

@@ -20,7 +20,6 @@ public class LogInActivity extends AppCompatActivity {
     private EditText password;
     private String _username = "cthee";
     private String _password = "0504";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +37,10 @@ public class LogInActivity extends AppCompatActivity {
                 String sUser = username.getText().toString().trim();
                 String sPasword = password.getText().toString().trim();
 
-//              if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
-                if(true)
+              if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
+//                if(true)
                     {
                         //Success
-                        //Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-
-//                        Uri uri = Uri.parse("http://113.164.120.62:8070/CHD/screen1.jsp");
-//                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                        startActivity(intent);
-
-//                        Intent intent = new Intent(LogInActivity.this, Screen1Activity.class);
                         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

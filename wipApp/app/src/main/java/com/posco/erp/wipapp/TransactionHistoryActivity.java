@@ -28,7 +28,8 @@ import java.util.List;
 public class TransactionHistoryActivity extends AppCompatActivity {
     List<itemDTO> resultList;
     ListView lv ;
-    String uri = "http://172.27.26.55:8080/screen3popJSONServlet";
+//    String uri = "http://172.27.26.55:8080/screen3popJSONServlet";
+    String uri = "http://113.164.120.62:8070/CHD/screen3popJSONServlet";
     ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,10 +129,6 @@ public class TransactionHistoryActivity extends AppCompatActivity {
                 updateDisplay();
             }
             pb.setVisibility(View.INVISIBLE);
-        }
-        @Override
-        protected void onProgressUpdate(String... values) {
-//            updateDisplay(values[0]);
         }
     }
 }

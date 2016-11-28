@@ -35,7 +35,8 @@ import java.util.List;
 public class CycleCountStockActivity extends AppCompatActivity {
     List<subInventoryDTO> resultList;
     ListView lv ;
-    String uri = "http://172.27.26.55:8080/screen2popJSONServlet";
+//    String uri = "http://172.27.26.55:8080/screen2popJSONServlet";
+    String uri = "http://113.164.120.62:8070/CHD/screen2popJSONServlet";
     ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,10 +136,6 @@ public class CycleCountStockActivity extends AppCompatActivity {
 
             }
             pb.setVisibility(View.INVISIBLE);
-        }
-        @Override
-        protected void onProgressUpdate(String... values) {
-//            updateDisplay(values[0]);
         }
     }
 }
