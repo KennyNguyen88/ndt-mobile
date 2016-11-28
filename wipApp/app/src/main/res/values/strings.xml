@@ -9,6 +9,7 @@
     <string name="menu_item1">On-hand Quantity</string>
     <string name="menu_item2">Cycle Count Entries</string>
     <string name="menu_item3">Transaction History</string>
+    <string name="menu_item4">Webview</string>
     <string name="about">This is demo application. Open menu and navigation to your desire function !</string>
     <string name="title_activity_screen1">On-hand Quantity</string>
     <string name="title_activity_screen2">Cycle Count Entries</string>
