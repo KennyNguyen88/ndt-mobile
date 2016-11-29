@@ -6,9 +6,4 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_create_samples"
-        android:orderInCategory="110"
-        android:title="@string/action_create_sample"
-        app:showAsAction="never" />
 </menu>
