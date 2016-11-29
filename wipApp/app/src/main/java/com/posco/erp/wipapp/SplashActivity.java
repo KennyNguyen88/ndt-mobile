@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                startActivity(new Intent(SplashActivity.this,LogInActivity.class));
                 finish();//Don't let user comeback splash screen
             }
         }, 2000);

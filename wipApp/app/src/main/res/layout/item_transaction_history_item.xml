@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Item:"
+             />
+
+        <TextView android:id="@+id/item_detail"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Q1000429"
+             />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/onhand_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="On-hand: "
+            />
+
+        <TextView android:id="@+id/onhand_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/onhand_label"
+            android:background="@color/hightlight"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:text="20000"
+             />
+
+        <TextView android:id="@+id/uom_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toLeftOf="@id/uom_detail"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="UOM: "
+            />
+
+        <TextView android:id="@+id/uom_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="EA"
+             />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/desc_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:minWidth="70dp"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Desc: "
+             />
+
+        <TextView android:id="@+id/desc_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/poscoLightGray"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:text="Oil Seal/Bearing Isolator TC, ID75xOD100"
+             />
+
+    </LinearLayout>
+
+</LinearLayout>

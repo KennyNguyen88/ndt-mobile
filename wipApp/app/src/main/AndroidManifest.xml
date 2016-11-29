@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.posco.erp.wipapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,37 +14,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Screen1Activity"
             android:label="@string/title_activity_screen1"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.posco.erp.wipapp.MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        <activity
-            android:name=".Screen2Activity"
-            android:label="@string/title_activity_screen2"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.posco.erp.wipapp.MainActivity" />
-        </activity>
-        <activity
-            android:name=".Screen3Activity"
-            android:label="@string/title_activity_screen3"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -65,10 +42,64 @@
         </activity>
         <activity
             android:name=".LogInActivity"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Screen1TActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OnHandActivity"
+
+            android:label="@string/title_activity_on_hand"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.MainActivity" />
+        </activity>
+        <activity android:name=".TransactionHistoryActivity"
+
+            android:label="@string/title_activity_transaction_history"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.MainActivity" />
+        </activity>
+        <activity android:name=".TransactionHistoryDetailActivity"
+
+            android:label="@string/title_activity_transaction_history_detail"
+            android:parentActivityName=".TransactionHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.TransactionHistoryActivity" />
+        </activity>
+        <activity android:name=".CycleCountStockActivity"
+
+            android:label="@string/title_activity_cycle_count_stock"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.MainActivity" />
+        </activity>
+        <activity android:name=".CycleCountDetailActivity"
+
+            android:label="@string/title_activity_cycle_count_detail"
+            android:parentActivityName=".CycleCountStockActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.CycleCountStockActivity" />
+        </activity>
+        <activity android:name=".CycleCountDetailEditorActivity"
 
-
+            android:label="@string/title_activity_cycle_count_detail_editor"
+            android:parentActivityName=".CycleCountDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.CycleCountDetailActivity" />
         </activity>
     </application>
 
