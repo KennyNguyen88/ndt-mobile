@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,6 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         //get controls
-        ImageView logo = (ImageView) findViewById(R.id.logo);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         Button login = (Button) findViewById(R.id.button);
@@ -34,29 +34,50 @@ public class LogInActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sUser = username.getText().toString().trim();
-                String sPasword = password.getText().toString().trim();
-
-              if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
-//                if(true)
-                    {
-                        //Success
-                        Intent intent = new Intent(LogInActivity.this, Screen1TActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                else{
-                        //Fail
-                        Snackbar snackbar = Snackbar
-                                .make(findViewById(R.id.activity_log_in), R.string.login_fail_notify, Snackbar.LENGTH_LONG);
-                        snackbar.show();
-
-                    }
-
+                doLogin();
             }
         });
-
-
-
+        password.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            doLogin();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
     }
+
+    private void doLogin(){
+        String sUser = username.getText().toString().trim();
+        String sPasword = password.getText().toString().trim();
+
+        if (sUser.equalsIgnoreCase(_username) && sPasword.equalsIgnoreCase(_password))
+//                if(true)
+        {
+            //Success
+            Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            //Fail
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.activity_log_in), R.string.login_fail_notify, Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        }
+    }
+
+
 }

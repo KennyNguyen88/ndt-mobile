@@ -30,4 +30,9 @@
     </string>
     <string name="title_activity_cycle_count_stock">Cycle Count Stock Entries</string>
     <string name="title_activity_cycle_count_detail">Cycle Count Detail Entries</string>
+    <string name="title_activity_cycle_count_detail_editor">Cycle Count Detail Editor</string>
+    <string name="no_network">Network isn\'t available</string>
+    <string name="no_result">Empty Result</string>
+    <string name="null_result">Error Response</string>
+
 </resources>

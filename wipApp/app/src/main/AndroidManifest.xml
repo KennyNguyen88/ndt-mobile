@@ -11,10 +11,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Screen1Activity"
+        <activity
+            android:name=".Screen1Activity"
             android:label="@string/title_activity_screen1"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
@@ -29,7 +31,8 @@
             android:authorities="com.posco.erp.wipapp.onhandprovider"
             android:exported="false" />
 
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,11 +40,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogInActivity"
+        <activity
+            android:name=".LogInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Screen1TActivity"
+        <activity
+            android:name=".Screen1TActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OnHandActivity"
+
             android:label="@string/title_activity_on_hand"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -50,6 +56,7 @@
                 android:value="com.posco.erp.wipapp.MainActivity" />
         </activity>
         <activity android:name=".TransactionHistoryActivity"
+
             android:label="@string/title_activity_transaction_history"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -58,6 +65,7 @@
                 android:value="com.posco.erp.wipapp.MainActivity" />
         </activity>
         <activity android:name=".TransactionHistoryDetailActivity"
+
             android:label="@string/title_activity_transaction_history_detail"
             android:parentActivityName=".TransactionHistoryActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -66,6 +74,7 @@
                 android:value="com.posco.erp.wipapp.TransactionHistoryActivity" />
         </activity>
         <activity android:name=".CycleCountStockActivity"
+
             android:label="@string/title_activity_cycle_count_stock"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -74,14 +83,23 @@
                 android:value="com.posco.erp.wipapp.MainActivity" />
         </activity>
         <activity android:name=".CycleCountDetailActivity"
+
             android:label="@string/title_activity_cycle_count_detail"
             android:parentActivityName=".CycleCountStockActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.posco.erp.wipapp.CycleCountStockActivity" />
+        </activity>
+        <activity android:name=".CycleCountDetailEditorActivity"
+
+            android:label="@string/title_activity_cycle_count_detail_editor"
+            android:parentActivityName=".CycleCountDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.posco.erp.wipapp.CycleCountDetailActivity" />
         </activity>
     </application>
 

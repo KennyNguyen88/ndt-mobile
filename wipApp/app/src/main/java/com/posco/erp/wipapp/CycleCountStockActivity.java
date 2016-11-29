@@ -6,28 +6,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.posco.erp.wipapp.R;
 import com.posco.erp.wipapp.managers.HttpManager;
-import com.posco.erp.wipapp.models.ItemJSONParser;
 import com.posco.erp.wipapp.models.Stock_CycleJSONParser;
-import com.posco.erp.wipapp.models.cycleDTO;
-import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.subInventoryDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
+import com.posco.erp.wipapp.utils.UtilIf;
 import com.posco.erp.wipapp.views.adapters.Cycle_Count_Stock_Adapter;
-import com.posco.erp.wipapp.views.adapters.OnhandAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +30,11 @@ import java.util.List;
 public class CycleCountStockActivity extends AppCompatActivity {
     List<subInventoryDTO> resultList;
     ListView lv ;
-//    String uri = "http://172.27.26.55:8080/screen2popJSONServlet";
-    String uri = "http://113.164.120.62:8070/CHD/screen2popJSONServlet";
     ProgressBar pb;
+    TextView tvSearch;
+    Cycle_Count_Stock_Adapter adapter;
+    String uri = "http://113.164.120.62:8070/CHD/screen2popJSONServlet";
+    static String SUB_INVENTORY = "subInventory";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,32 +42,47 @@ public class CycleCountStockActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView tvSearch = (TextView) findViewById(R.id.searchEditText);
+        tvSearch = (TextView) findViewById(R.id.searchEditText);
         ImageButton submit = (ImageButton) findViewById(R.id.btnSearch);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        resultList = new ArrayList<>();
+        lv = (ListView) findViewById(R.id.listView);
+
+        //Main Action
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String query = tvSearch.getText().toString().trim().toUpperCase();
-                if (!query.equalsIgnoreCase("") && !query.isEmpty())
-                {
-                    doSearch(query);
-                }
+                doSearch();
             }
         });
-        lv = (ListView) findViewById(R.id.listView);
+        tvSearch.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            doSearch();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CycleCountStockActivity.this, CycleCountDetailActivity.class);
                 subInventoryDTO it = (subInventoryDTO) lv.getItemAtPosition(position);
-                intent.putExtra("subInventory",it.getSecondary_inventory_name());
+                intent.putExtra(SUB_INVENTORY,it.getSecondary_inventory_name());
                 startActivityForResult(intent,0);
             }
         });
-        pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setVisibility(View.INVISIBLE);
-        resultList = new ArrayList<>();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     protected boolean isOnline(){
@@ -78,25 +90,37 @@ public class CycleCountStockActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-    private void doSearch(String query) {
+    protected void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+    private void doSearch() {
         if(isOnline())
         {
-            requestData(uri,query);
+            hideKeyboard();
+            String subInventory = tvSearch.getText().toString().trim().toUpperCase();
+            if (!subInventory.equalsIgnoreCase("") && !subInventory.isEmpty())
+            {
+                requestData(subInventory);
+            }
         }
         else{
-            Toast.makeText(CycleCountStockActivity.this,"Network isn't available",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(CycleCountStockActivity.this,getString(R.string.no_network));
         }
     }
-    private void requestData(String uri,String query) {
+    private void requestData(String subInventory) {
         CycleCountStockActivity.MyTask task = new CycleCountStockActivity.MyTask();
         RequestPackage p = new RequestPackage();
         p.setMethod("GET");
         p.setUri(uri);
-        p.setParam("subInventory",query);
+        p.setParam("subInventory",subInventory);
         task.execute(p);
     }
     private void updateDisplay() {
-        Cycle_Count_Stock_Adapter adapter = new Cycle_Count_Stock_Adapter(this,R.layout.item_cycle_count_stock,resultList);
+        adapter = new Cycle_Count_Stock_Adapter(this,R.layout.item_cycle_count_stock,resultList);
         if (resultList != null)
         {
             if (resultList.size() > 0)
@@ -106,12 +130,12 @@ public class CycleCountStockActivity extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(CycleCountStockActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(CycleCountStockActivity.this,getString(R.string.no_result));
             }
         }
         else
         {
-            Toast.makeText(CycleCountStockActivity.this,"Error Response",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(CycleCountStockActivity.this,getString(R.string.null_result));
         }
     }
     private class MyTask extends AsyncTask<RequestPackage, String, String > {
@@ -128,12 +152,11 @@ public class CycleCountStockActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (s.isEmpty() || s.equalsIgnoreCase(""))
             {
-                Toast.makeText(CycleCountStockActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(CycleCountStockActivity.this,getString(R.string.no_result));
             }
             else{
                 resultList = Stock_CycleJSONParser.parseString(s);
                 updateDisplay();
-
             }
             pb.setVisibility(View.INVISIBLE);
         }

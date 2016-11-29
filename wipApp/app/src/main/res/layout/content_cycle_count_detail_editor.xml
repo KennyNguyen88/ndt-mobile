@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_cycle_count_detail_editor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.posco.erp.wipapp.CycleCountDetailEditorActivity"
+    tools:showIn="@layout/activity_cycle_count_detail_editor"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/date_label"
+        <TextView android:id="@+id/item_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="70dp"
@@ -15,114 +22,108 @@
             android:layout_alignParentLeft="true"
             android:background="@color/poscoDarkGray"
             android:textColor="@color/white"
-            android:text="Date"
-             />
-        <TextView android:id="@+id/date_detail"
+            android:text="Item"
+            />
+
+        <TextView android:id="@+id/item_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:layout_toRightOf="@+id/date_label"
+            android:layout_toRightOf="@+id/item_label"
             android:background="@color/poscoLightGray"
             android:textColor="@color/black"
-            android:text="2015-12-26"
-             />
-
-        <TextView android:id="@+id/stock_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:minWidth="60dp"
-            android:layout_alignParentRight="true"
-            android:background="@color/poscoLightGray"
-            android:textColor="@color/black"
-            android:text="Q1101"
-             />
-
-        <TextView android:id="@+id/stock_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:minWidth="60dp"
-            android:layout_toLeftOf="@id/stock_detail"
-            android:background="@color/poscoDarkGray"
-            android:textColor="@color/white"
-            android:text="Stock"
-             />
+            android:text="TextView"
+            />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/trxTp_label"
+        <TextView android:id="@+id/item_desc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Desc"
+            />
+
+        <TextView android:id="@+id/item_desc_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/item_desc_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Grease"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/onhand_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Onhand"
+            />
+
+        <TextView android:id="@+id/onhand_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="100dp"
+            android:layout_toRightOf="@+id/onhand_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="1080.0"
+            />
+
+        <EditText android:id="@+id/act_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:minWidth="70dp"
+            android:minWidth="100dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/hightlight"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:text="200"
+            />
+
+        <TextView android:id="@+id/act_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toLeftOf="@id/act_detail"
             android:background="@color/poscoDarkGray"
             android:textColor="@color/white"
-            android:text="Trx.Tp"
-             />
+            android:text="Act.Qty"
+            />
 
-        <TextView android:id="@+id/trxTp_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/poscoLightGray"
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:text="PSV Maintenanace" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView android:id="@+id/trxQty_label"
+        <Button android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="70dp"
-            android:padding="5dp"
-            android:layout_alignParentLeft="true"
-            android:background="@color/poscoDarkGray"
+            android:background="@drawable/side_nav_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:text="Trx.Qty"
-             />
-
-        <TextView android:id="@+id/trxQty_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:minWidth="100dp"
-            android:layout_toRightOf="@+id/trxQty_label"
-            android:background="@color/poscoLightGray"
-            android:textColor="@color/black"
-            android:inputType="numberDecimal"
-            android:text="10.0"
-             />
-
-        <TextView android:id="@+id/dueQty_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:minWidth="60dp"
-            android:layout_alignParentRight="true"
-            android:background="@color/poscoLightGray"
-            android:textColor="@color/black"
-            android:inputType="numberDecimal"
-            android:text="10.0"
-             />
-
-        <TextView android:id="@+id/dueQty_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:minWidth="60dp"
-            android:layout_toLeftOf="@id/dueQty_detail"
-            android:background="@color/poscoDarkGray"
-            android:textColor="@color/white"
-            android:text="Due.Qty"
-             />
+            android:text="Modify"/>
     </RelativeLayout>
 </LinearLayout>

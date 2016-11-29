@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,12 +32,6 @@
             android:text="TextView"
             />
 
-        <Switch android:id="@+id/btnswitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Edit"
-            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -82,18 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:minWidth="100dp"
             android:layout_toRightOf="@+id/onhand_label"
             android:background="@color/poscoLightGray"
             android:textColor="@color/black"
             android:text="1080.0"
              />
 
-        <EditText android:id="@+id/act_detail"
+        <TextView android:id="@+id/act_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:minWidth="100dp"
             android:layout_alignParentRight="true"
-            android:background="@color/hightlight"
+            android:background="@color/poscoLightGray"
             android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:text="200"

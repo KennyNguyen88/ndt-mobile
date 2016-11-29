@@ -20,37 +20,37 @@ import com.posco.erp.wipapp.models.Detail_TransactionJSONParser;
 import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.transactionDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
+import com.posco.erp.wipapp.utils.UtilIf;
 import com.posco.erp.wipapp.views.adapters.Transaction_History_Detail_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionHistoryDetailActivity extends AppCompatActivity {
-//    String uri = "http://172.27.26.55:8080/screen3JSONServlet";
     String uri = "http://113.164.120.62:8070/CHD/screen3JSONServlet";
     List resultList;
+    Transaction_History_Detail_Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Get data from parent
         Bundle b = getIntent().getExtras();
-        String inventoryItemId = b.getString("inventoryItemId");
-        String itemCd = b.getString("itemCd");
+        String inventoryItemId = b.getString(TransactionHistoryActivity.INVENTORY_ITEM_ID);
+        String itemCd = b.getString(TransactionHistoryActivity.ITEM_CD);
+
+        //Main process
         doSearch(inventoryItemId,itemCd);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
             return true;
@@ -85,7 +85,6 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
         task.execute(p);
     }
     private void updateDisplay() {
-//        Transaction_History_Item_Adapter adapter = new Transaction_History_Item_Adapter(this,R.layout.item_transaction_history_item,resultList);
         if (resultList != null)
         {
             if (resultList.size() > 0)
@@ -99,18 +98,18 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
                     results.add(trx);
                 }
                 updateDisplayItem(item);
-                Transaction_History_Detail_Adapter adapter = new Transaction_History_Detail_Adapter(this,R.layout.item_transaction_history_detail,results);
+                adapter = new Transaction_History_Detail_Adapter(this,R.layout.item_transaction_history_detail,results);
                 ListView lv = (ListView) findViewById(R.id.listView3);
                 lv.setAdapter(adapter);
             }
             else
             {
-                Toast.makeText(TransactionHistoryDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(TransactionHistoryDetailActivity.this,getString(R.string.no_result));
             }
         }
         else
         {
-            Toast.makeText(TransactionHistoryDetailActivity.this,"Error Response",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(TransactionHistoryDetailActivity.this,getString(R.string.null_result));
         }
     }
     private void updateDisplayItem(itemDTO dto)    {
@@ -139,7 +138,7 @@ public class TransactionHistoryDetailActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (s.isEmpty() || s.equalsIgnoreCase(""))
             {
-                Toast.makeText(TransactionHistoryDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(TransactionHistoryDetailActivity.this,getString(R.string.no_result));
             }
             else{
                 resultList = Detail_TransactionJSONParser.parseString(s);

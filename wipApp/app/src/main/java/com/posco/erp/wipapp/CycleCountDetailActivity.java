@@ -1,86 +1,82 @@
 package com.posco.erp.wipapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.posco.erp.wipapp.managers.HttpManager;
 import com.posco.erp.wipapp.models.Cycle_CycleJSONParser;
-import com.posco.erp.wipapp.models.Detail_TransactionJSONParser;
 import com.posco.erp.wipapp.models.cycleDTO;
-import com.posco.erp.wipapp.models.itemDTO;
-import com.posco.erp.wipapp.models.transactionDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
+import com.posco.erp.wipapp.utils.UtilIf;
 import com.posco.erp.wipapp.views.adapters.Cycle_Count_Detail_Adapter;
-import com.posco.erp.wipapp.views.adapters.OnhandAdapter;
-import com.posco.erp.wipapp.views.adapters.Transaction_History_Detail_Adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CycleCountDetailActivity extends AppCompatActivity {
-    String uri = "http://113.164.120.62:8070/CHD/screen2JSONServlet";
-//    String uri = "http://172.27.26.55:8080/screen2JSONServlet";
     List resultList;
     ListView lv;
+    Cycle_Count_Detail_Adapter adapter;
+    CycleCountDetailActivity.MyTask task;
+    String uri = "http://113.164.120.62:8070/CHD/screen2JSONServlet";
     String subInventory;
+    static String SUB_INVENTORY = "subInventory";
+    static String INVENTORY_ITEM_ID = "inventoryItemId";
+    static String ITEM_CD = "itemCd";
+    static String DESCRIPTION = "description";
+    static String ON_HAND = "onhand";
+    static String ACT_QTY = "actQty";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cycle_count_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         lv = (ListView) findViewById(R.id.listView);
+
         //Get data from parent Activity
         Bundle b = getIntent().getExtras();
-        subInventory = b.getString("subInventory");
-        //header
-        TextView tv_stock_detail = (TextView) findViewById(R.id.stock_detail);
-        tv_stock_detail.setText("Stock: "+ subInventory);
+        subInventory = b.getString(CycleCountStockActivity.SUB_INVENTORY);
 
+        //title
+        setTitle(subInventory);
+
+        //Main Action
         doSearch(subInventory);
-        Button submit = (Button) findViewById(R.id.btnSubmit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                updateView();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CycleCountDetailActivity.this, CycleCountDetailEditorActivity.class);
+                cycleDTO it = (cycleDTO) lv.getItemAtPosition(position);
+                intent.putExtra(SUB_INVENTORY, subInventory);
+                intent.putExtra(INVENTORY_ITEM_ID,it.getINVENTORY_ITEM_ID());
+                intent.putExtra(ITEM_CD,it.getITEM_CD());
+                intent.putExtra(DESCRIPTION,it.getDESCRIPTION());
+                intent.putExtra(ON_HAND,String.valueOf(it.getQUANTITY()));
+                intent.putExtra(ACT_QTY, String.valueOf(it.getActQty()));
+                startActivityForResult(intent,0);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    private void updateView(){
-//        for (int i = 0 ; i < lv.getCount(); i++) {
-//            View v = lv.getChildAt(i);
-//            cycleDTO it = (cycleDTO) lv.getItemAtPosition(i);
-//            String itemId = it.getINVENTORY_ITEM_ID();
-//            EditText ed_actQty = (EditText) v.findViewById(R.id.act_detail);
-//            Double actQty = Double.parseDouble(ed_actQty.getText().toString());
-//            postData(uri,actQty, itemId);
-//        }
 
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
             return true;
@@ -102,22 +98,11 @@ public class CycleCountDetailActivity extends AppCompatActivity {
             requestData(uri,subInventory);
         }
         else{
-            Toast.makeText(CycleCountDetailActivity.this,"Network isn't available",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(CycleCountDetailActivity.this,getString(R.string.no_network));
         }
     }
-    private void postData(String uri,Double actQty, String itemId) {
-        Log.v("postData",itemId );
-        CycleCountDetailActivity.MyPOSTTask task = new CycleCountDetailActivity.MyPOSTTask();
-        RequestPackage p = new RequestPackage();
-        p.setMethod("POST");
-        p.setUri(uri);
-        p.setParam("subInventory",subInventory);
-        p.setParam("actQty",actQty.toString());
-        p.setParam("itemId",itemId);
-        task.execute(p);
-    }
     private void requestData(String uri,String subInventory) {
-        CycleCountDetailActivity.MyTask task = new CycleCountDetailActivity.MyTask();
+        task = new CycleCountDetailActivity.MyTask();
         RequestPackage p = new RequestPackage();
         p.setMethod("GET");
         p.setUri(uri);
@@ -125,7 +110,7 @@ public class CycleCountDetailActivity extends AppCompatActivity {
         task.execute(p);
     }
     private void updateDisplay() {
-        Cycle_Count_Detail_Adapter adapter = new Cycle_Count_Detail_Adapter(this,R.layout.activity_cycle_count_detail,resultList);
+        adapter = new Cycle_Count_Detail_Adapter(this,R.layout.activity_cycle_count_detail,resultList);
         if (resultList != null)
         {
             if (resultList.size() > 0)
@@ -134,12 +119,12 @@ public class CycleCountDetailActivity extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(CycleCountDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(CycleCountDetailActivity.this,getString(R.string.no_result));
             }
         }
         else
         {
-            Toast.makeText(CycleCountDetailActivity.this,"Error Response",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(CycleCountDetailActivity.this,getString(R.string.null_result));
         }
 }
     private class MyTask extends AsyncTask<RequestPackage, String, String > {
@@ -152,7 +137,7 @@ public class CycleCountDetailActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (s.isEmpty() || s.equalsIgnoreCase(""))
             {
-                Toast.makeText(CycleCountDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(CycleCountDetailActivity.this,getString(R.string.no_result));
             }
             else{
                 resultList = Cycle_CycleJSONParser.parseString(s);
@@ -160,22 +145,13 @@ public class CycleCountDetailActivity extends AppCompatActivity {
             }
         }
     }
-    private class MyPOSTTask extends AsyncTask<RequestPackage, String, String > {
-        @Override
-        protected String doInBackground(RequestPackage... params) {
-            String content = HttpManager.getData(params[0]);
-            return content;
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            if (s.isEmpty() || s.equalsIgnoreCase(""))
-            {
-                Toast.makeText(CycleCountDetailActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
-            }
-            else{
-//                resultList = Cycle_CycleJSONParser.parseString(s);
-//                updateDisplay();
-            }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0 && resultCode == 1)
+        {
+            String _subInventory = (String) data.getExtras().getString(CycleCountDetailEditorActivity.SUB_INVENTORY);
+            doSearch(_subInventory);
+//            updateDisplay();
         }
     }
 }

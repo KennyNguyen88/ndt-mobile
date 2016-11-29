@@ -8,18 +8,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.posco.erp.wipapp.managers.HttpManager;
-import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.models.Item_TransactionJSONParser;
+import com.posco.erp.wipapp.models.itemDTO;
 import com.posco.erp.wipapp.network.RequestPackage;
+import com.posco.erp.wipapp.utils.UtilIf;
 import com.posco.erp.wipapp.views.adapters.Transaction_History_Item_Adapter;
 
 import java.util.ArrayList;
@@ -28,9 +29,13 @@ import java.util.List;
 public class TransactionHistoryActivity extends AppCompatActivity {
     List<itemDTO> resultList;
     ListView lv ;
-//    String uri = "http://172.27.26.55:8080/screen3popJSONServlet";
-    String uri = "http://113.164.120.62:8070/CHD/screen3popJSONServlet";
     ProgressBar pb;
+    TextView tvSearch;
+    Transaction_History_Item_Adapter adapter;
+    String uri = "http://113.164.120.62:8070/CHD/screen3popJSONServlet";
+    static String INVENTORY_ITEM_ID = "inventoryItemId";
+    static String ITEM_CD = "itemCd";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,33 +43,48 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView tvSearch = (TextView) findViewById(R.id.searchEditText2);
+        tvSearch = (TextView) findViewById(R.id.searchEditText2);
         ImageButton submit = (ImageButton) findViewById(R.id.btnSearch2);
-        submit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-//                tvSearch.clearFocus();
-                String query = tvSearch.getText().toString().trim().toUpperCase();
-                if (!query.equalsIgnoreCase("") && !query.isEmpty())
+        lv = (ListView) findViewById(R.id.listView2);
+        resultList = new ArrayList<>();
+        //Main process
+        tvSearch.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
                 {
-                    doSearch(query);
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            doSearch();
+                            return true;
+                        default:
+                            break;
+                    }
                 }
+                return false;
             }
         });
-        lv = (ListView) findViewById(R.id.listView2);
+        submit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                doSearch();
+            }
+        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TransactionHistoryActivity.this, TransactionHistoryDetailActivity.class);
                 itemDTO it = (itemDTO) lv.getItemAtPosition(position);
-                intent.putExtra("inventoryItemId",it.getINVENTORY_ITEM_ID());
-                intent.putExtra("itemCd",it.getITEM_CD());
+                intent.putExtra(INVENTORY_ITEM_ID,it.getINVENTORY_ITEM_ID());
+                intent.putExtra(ITEM_CD,it.getITEM_CD());
                 startActivityForResult(intent,0);
             }
         });
         pb = (ProgressBar) findViewById(R.id.progressBar2);
         pb.setVisibility(View.INVISIBLE);
-        resultList = new ArrayList<>();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     protected boolean isOnline(){
@@ -72,16 +92,21 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-    private void doSearch(String query) {
+    private void doSearch() {
         if(isOnline())
         {
-            requestData(uri,query);
+            String itemCd = tvSearch.getText().toString().trim().toUpperCase();
+            if (!itemCd.equalsIgnoreCase("") && !itemCd.isEmpty())
+            {
+                requestData(itemCd);
+            }
+
         }
         else{
-            Toast.makeText(TransactionHistoryActivity.this,"Network isn't available",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(TransactionHistoryActivity.this,getString(R.string.no_network));
         }
     }
-    private void requestData(String uri,String query) {
+    private void requestData(String query) {
         TransactionHistoryActivity.MyTask task = new TransactionHistoryActivity.MyTask();
         RequestPackage p = new RequestPackage();
         p.setMethod("GET");
@@ -90,22 +115,21 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         task.execute(p);
     }
     private void updateDisplay() {
-        Transaction_History_Item_Adapter adapter = new Transaction_History_Item_Adapter(this,R.layout.item_transaction_history_item,resultList);
+        adapter = new Transaction_History_Item_Adapter(this,R.layout.item_transaction_history_item,resultList);
         if (resultList != null)
         {
             if (resultList.size() > 0)
             {
-                ListView lv = (ListView) findViewById(R.id.listView2);
                 lv.setAdapter(adapter);
             }
             else
             {
-                Toast.makeText(TransactionHistoryActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(TransactionHistoryActivity.this,getString(R.string.no_result));
             }
         }
         else
         {
-            Toast.makeText(TransactionHistoryActivity.this,"Error Response",Toast.LENGTH_LONG).show();
+            UtilIf.notify_message(TransactionHistoryActivity.this,getString(R.string.null_result));
         }
     }
     private class MyTask extends AsyncTask<RequestPackage, String, String > {
@@ -122,7 +146,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (s.isEmpty() || s.equalsIgnoreCase(""))
             {
-                Toast.makeText(TransactionHistoryActivity.this,"Empty Results Response",Toast.LENGTH_LONG).show();
+                UtilIf.notify_message(TransactionHistoryActivity.this,getString(R.string.no_result));
             }
             else{
                 resultList = Item_TransactionJSONParser.parseString(s);

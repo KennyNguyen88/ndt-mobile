@@ -10,28 +10,6 @@
     tools:showIn="@layout/activity_cycle_count_detail"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView android:id="@+id/stock_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_alignBaseline="@+id/btnSubmit"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="Stock: Q1102 - 1"
-            />
-
-        <Button android:id="@+id/btnSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Save"
-            />
-
-    </RelativeLayout>
-
     <ListView android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

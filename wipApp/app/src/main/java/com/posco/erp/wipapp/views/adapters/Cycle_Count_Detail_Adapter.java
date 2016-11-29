@@ -52,7 +52,7 @@ public class Cycle_Count_Detail_Adapter extends ArrayAdapter<cycleDTO> {
         tv_onhand_detail.setSingleLine();
 
         Double act_detail = dto.getActQty();
-        EditText tv_act_detail = (EditText) view.findViewById(R.id.act_detail);
+        TextView tv_act_detail = (TextView) view.findViewById(R.id.act_detail);
         tv_act_detail.setText(act_detail.toString());
         tv_act_detail.setSingleLine();
 
