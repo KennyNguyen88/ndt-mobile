@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.posco.erp.wipapp.R;
 import com.posco.erp.wipapp.utils.DBOpenHelper;
 
-public class onhandCursorAdapter extends CursorAdapter {
-    public onhandCursorAdapter(Context context, Cursor c, int flags) {
+public class OnhandCursorAdapter extends CursorAdapter {
+    public OnhandCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 
