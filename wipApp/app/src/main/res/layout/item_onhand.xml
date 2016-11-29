@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:id="@+id/item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="60dp"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Item: "
+            />
+
+        <TextView android:id="@+id/item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@id/item_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Q1000429"
+            />
+        <TextView android:id="@+id/uom_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="100dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="EA"
+            />
+        <TextView android:id="@+id/uom_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="60dp"
+            android:layout_toLeftOf="@id/uom_detail"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="UOM: "
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:id="@+id/stock_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="60dp"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@color/poscoDarkGray"
+            android:text="Stock: "
+            />
+
+        <TextView android:id="@+id/stock_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@id/stock_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Q1101"
+            />
+        <TextView android:id="@+id/onhand_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="100dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/hightlight"
+            android:textColor="@color/black"
+            android:text="20000"
+            />
+        <TextView android:id="@+id/onhand_label"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="60dp"
+            android:padding="5dp"
+            android:layout_toLeftOf="@id/onhand_detail"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Qty: " />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:id="@+id/desc_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="60dp"
+            android:padding="5dp"
+            android:background="@color/poscoDarkGray"
+            android:textColor="@color/white"
+            android:text="Desc: "
+            />
+
+        <TextView android:id="@+id/desc_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/desc_label"
+            android:background="@color/poscoLightGray"
+            android:textColor="@color/black"
+            android:text="Oil Seal/Bearing Isolator TC, ID75xOD100"
+             />
+    </LinearLayout>
+
+</LinearLayout>
