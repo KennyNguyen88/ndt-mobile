@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.posco.erp.wipapp.managers.onhandProvider;
 import com.posco.erp.wipapp.utils.DBOpenHelper;
-import com.posco.erp.wipapp.views.adapters.onhandCursorAdapter;
+import com.posco.erp.wipapp.views.adapters.OnhandCursorAdapter;
 
 public class Screen1Activity extends AppCompatActivity implements OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor> {
     private CursorAdapter cursorAdapter;
@@ -37,7 +37,7 @@ public class Screen1Activity extends AppCompatActivity implements OnQueryTextLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cursorAdapter = new onhandCursorAdapter(this, null, 0);
+        cursorAdapter = new OnhandCursorAdapter(this, null, 0);
         ListView list = (ListView) findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
