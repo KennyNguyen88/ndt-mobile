@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.trung.snippet.R;
 import com.example.trung.snippet.Snippet_001Activity;
 import com.example.trung.snippet.Snippet_002Activity;
+import com.example.trung.snippet.Snippet_003Activity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity
 
         Button btn001 = (Button) findViewById(R.id.button001);
         Button btn002 = (Button) findViewById(R.id.button002);
+        Button btn003 = (Button) findViewById(R.id.button003);
 
         //Main Process
         btn001.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Snippet_002Activity.class);
+                startActivity(intent);
+            }
+        });
+        btn003.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Snippet_003Activity.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +83,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
